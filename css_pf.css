@@ -190,6 +190,13 @@ body{
   justify-content: center; 
 }
 .board-container{
-  width: 90%;
+  width: fit-content;
   background-color: rgba(37, 37, 36, 0.3);
+
+}
+.cell{
+  background-color: rgb(37, 37, 36);
+  width: 28px;
+  height: 28px;
+
 }
