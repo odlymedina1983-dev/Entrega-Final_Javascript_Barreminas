@@ -1,86 +1,178 @@
 body{
-    background-color: rgb(53, 53, 54);
+    background-image: url(img/background_mine_field.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#returnIndex > a{
-    color: beige;
-    text-decoration: none;
+.icon{
+    color: rgb(231, 235, 4);
+    display: block; 
+    width: 32px;
+    height: 32px;
 }
-.calculadora{
-    background-color: black;
-    max-width: 350px;    
-    padding: 20px;
-    border-radius: 20px;
+.logo{
+    color: rgb(235, 116, 4);
+    font-size: 45px;
+    text-transform: uppercase;
+    margin: 30px;
+}
+.logo span{
+    color: rgb(231, 235, 4);
+    font-size: 45px;
+    text-transform: uppercase;
+}
+.element-container{
+    background-color: rgba(36, 36, 34, 0.7);
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+#boardSize {
+  background-color: black;
+  color: rgb(231, 235, 4);
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(235, 116, 4);
+}
+#boardSize option {
+  background-color: black;
+  color: rgb(231, 235, 4);
+  font-size: 18px;
+}
+.boardSize{
+    background-color: rgb(37, 37, 36);
+    padding: 10px;
+    display: flex;
     align-items: center;
     gap: 10px;
-}
-.calculadora #screen{
-    width: 100%;
-    min-height: 60px;
-    font-size: 30px;
-    margin-bottom: 20px;
     border-radius: 10px;
-    border: none;
-    text-align: right;
-    padding-right: 10px;
-    overflow: hidden;
 }
-.calculadora .teclado-container{
-    display: grid;
-    grid-template-columns: repeat(4 , 1fr);
-    grid-template-rows: repeat(4 , 1fr);
-    width: 100%;
+.boardSize label {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(235, 116, 4);
+  font-weight: 700;
 }
-.calculadora #enterButton{
-    height: 60px;
-    width: 150px;
-    border-radius: 20px;
-    font-size: 30px;
-    color: rgb(85, 30, 8);
-    background-color: rgb(143, 139, 137);
-    border: none;
-    font-weight: 600;
-}
-.calculadora #enterButton:hover{
-    color: rgb(143, 139, 137);
-    background-color: rgb(85, 30, 8);
-}
-.calculadora .teclado{
-    background-color: rgb(53, 53, 54);
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
+.mineCount{
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    color: #ccc;
-    margin: 5px;    
+    gap: 5px;
+    background-color: rgb(37, 37, 36); 
+    border-radius: 10px;  
+    padding: 10px;
 }
-.calculadora .teclado:hover{
-    background-color: #ccc;
-    color: black;
+.mineCount .info-text{
+  margin: 0;             
+  line-height: 1; 
+  color: rgb(235, 116, 4); 
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: 700;  
 }
-#tecla4,#tecla8,#tecla12,#tecla16{
-    background-color: rgb(202, 96, 54);
-    color: black;
-    font-weight: 500;
+.mineScreen{
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 5px;
+  color: rgb(231, 235, 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
-#tecla4:hover,#tecla8:hover,#tecla12:hover,#tecla16:hover{
-    background-color: rgb(209, 163, 145);
+.info-container{
+  display: flex;
+  gap: 10px;
 }
-#tecla13,#tecla15{
-    background-color: rgb(49, 163, 74);
-    color: black;
-    font-weight: 500;
+.timer-container{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(37, 37, 36); 
+  border-radius: 10px;  
+  padding: 10px;
 }
-#tecla13:hover,#tecla15:hover{
-    background-color: rgb(120, 167, 130);
+.timer-text{
+  margin: 0;             
+  line-height: 1; 
+  color: rgb(235, 116, 4); 
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: 700; 
 }
-
+.timerScreen{
+  width: auto;
+  padding-inline: 5px;
+  height: 30px;
+  background-color: black;
+  border-radius: 5px;
+  color: rgb(231, 235, 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.status-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(37, 37, 36); 
+  border-radius: 10px;  
+  padding: 10px;
+}
+.statusScreen{
+  width: auto;
+  padding-inline: 5px;
+  height: 30px;
+  background-color: black;
+  border-radius: 5px;
+  color: rgba(231, 235, 4, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  gap: 10px;
+}
+.status-text{
+  margin: 0;             
+  line-height: 1; 
+  color: rgb(235, 116, 4); 
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: 700; 
+}
+.button-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(37, 37, 36); 
+  border-radius: 10px;  
+  padding: 10px;
+  margin-left: 50px;
+  padding-inline: 20px;
+}
+.mainBtn{
+  background-color: transparent;
+  border: 2px solid rgb(235, 116, 4);
+  border-radius: 5px;
+  padding: 5px;
+  color: rgb(235, 116, 4); 
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: 700;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 10px;
+}
