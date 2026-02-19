@@ -179,16 +179,17 @@ body{
 .boardSection{
   margin-top: 20px;
   border: 1px solid ;
-  background-image: url(img/sectionBoard_background.jpg);
+  background-image: url(img/sectionBoard_background.png);
   background-repeat: no-repeat;
-  background-size: cover;
-  width: 1250px;
+  background-size: cover;  
+  width:875px;
   height: 700px;
   padding: 10px; 
   display: flex;
   align-items: center;
   justify-content: center; 
 }
+
 .board-container{
   width: fit-content;
   background-color: rgba(37, 37, 36, 0.3);
@@ -198,5 +199,31 @@ body{
   background-color: rgb(37, 37, 36);
   width: 28px;
   height: 28px;
-
+  border: 1px solid rgb(138, 138, 137);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8)
+}
+.difficulty-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(37, 37, 36); 
+  border-radius: 10px;  
+  padding: 10px;  
+  padding-inline: 20px;
+}
+.difficulty-container label{
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(235, 116, 4);
+  font-weight: 700;
+}
+#difficulty{
+  background-color: black;
+  color: rgb(231, 235, 4);
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgb(235, 116, 4);
 }

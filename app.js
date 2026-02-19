@@ -1,17 +1,61 @@
 let boardSize = document.getElementById('boardSize');
 let boardContainer = document.getElementById('boardContainer');
+let difficulty = document.getElementById('difficulty');
+let mineCount = document.getElementById('mineCount');
+
+const CONFIG_KEY = 'minesweeper_config';
+
+
+
 const cellSizeMap ={
     8  : 38,
     12 : 32,
     16 : 28,
     20 : 24,
     25 : 22,
-    32 : 18
+    32 : 16
+}
+const minesTable = {
+  easy: {
+    8: 10,
+    12: 20,
+    16: 40,
+    20: 60,
+    25: 90,
+    32: 140
+  },
+  normal: {
+    8: 15,
+    12: 30,
+    16: 50,
+    20: 80,
+    25: 120,
+    32: 180
+  },
+  hard: {
+    8: 20,
+    12: 40,
+    16: 70,
+    20: 110,
+    25: 160,
+    32: 250
+  }
 }
 
+
 boardSize.addEventListener('change', (e) => {
-    let boardSizeValue =e.target.value;
+    let boardSizeValue = e.target.value;
     renderBoard(boardSizeValue);
+    let difficultyValue = difficulty.value;
+    mineCountAsign(boardSizeValue, difficultyValue);
+    saveConfig();
+});
+
+difficulty.addEventListener('change', (e) => {
+    let difficultyValue = e.target.value;
+    let boardSizeValue = boardSize.value;
+    mineCountAsign(boardSizeValue, difficultyValue);
+    saveConfig();
 });
 
 function renderBoard(boardSizeValue) {
@@ -32,9 +76,39 @@ function renderBoard(boardSizeValue) {
             cell.dataset.row = row;
             cell.dataset.col = col;
             cell.dataset.id = row * sizeNum + col;
+            cell.style.width = `${actualCellSize}px`;
+            cell.style.height = `${actualCellSize}px`;
 
             boardContainer.appendChild(cell);
         }
     }
 
 }
+
+function mineCountAsign(size, difficulty){
+    const minesCount = minesTable[difficulty][size];
+    mineCount.textContent = `${minesCount}`;
+}
+
+function saveConfig() {
+  const config = {
+    boardSize: boardSize.value,
+    difficulty: difficulty.value,
+  };
+  localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+}
+
+function loadConfig() {
+  const raw = localStorage.getItem(CONFIG_KEY);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+
+renderBoard(boardSize.value);
+mineCountAsign(boardSize.value, difficulty.value);
+

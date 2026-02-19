@@ -24,6 +24,14 @@
                     <option value="32">32 x 32</option>
                 </select>
             </div>
+            <div class="difficulty-container">
+                <label for="difficulty" class="diffLabel">Difficulty</label>
+                    <select id="difficulty" name="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Hard</option>
+                    </select>
+            </div>
             <div class="info-container">
                 <div class="mineCount">
                     <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" focusable="false" class="icon">
@@ -31,7 +39,7 @@
                     <path d="M12 7V4M9 5l1.5 1.5M15 5l-1.5 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                     <h5 class="info-text">Remainning Mines</h5>
-                    <div class="mineScreen">20</div>
+                    <div class="mineScreen" id="mineCount">20</div>
                 </div>
                 <div class="timer-container">
                     <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" class="icon">
