@@ -1,10 +1,18 @@
+import { Timer } from './timer.js';
+
 let boardSize = document.getElementById('boardSize');
 let boardContainer = document.getElementById('boardContainer');
 let difficulty = document.getElementById('difficulty');
 let mineCount = document.getElementById('mineCount');
+let btnMain = document.getElementById('btnMain');
+let timerScreen = document.querySelector('.timerScreen');
+Timer.init(timerScreen);
 
 const CONFIG_KEY = 'minesweeper_config';
 
+btnMain.addEventListener('click', () => {
+    setStartReset();
+  });
 
 const cellSizeMap ={
     8  : 38,
@@ -40,10 +48,10 @@ const minesTable = {
     32: 250
   }
 }
-let allSet = document.querySelector('.allSet');
-let playing = document.querySelector('.playing');
-let gameOver = document.querySelector('.gameOver');
-let youWon = document.querySelector('.youWon');
+let allSet = document.querySelector('#allSet');
+let playing = document.querySelector('#playing');
+let gameOver = document.querySelector('#gameOver');
+let youWon = document.querySelector('#youWon');
 const gameStatus = {
     allSet:allSet,
     playing:playing,
@@ -90,6 +98,7 @@ function init() {
   
   renderBoard(boardSize.value);
   mineCountAsign(boardSize.value, difficulty.value);
+  setStatus('allSet');  
 }
 
 function renderBoard(boardSizeValue) {
@@ -141,6 +150,41 @@ function loadConfig() {
     return null;
   }
 }
+
+function setStatus(state){
+  Object.values(gameStatus).forEach(element => {
+    element.classList.remove('active');
+  });
+  let actualState = gameStatus[state];
+  if (actualState){
+    actualState.classList.add('active');
+  } 
+}
+
+function setStartReset(){
+  if (btnMain.textContent ==='START'){
+    btnMain.textContent = 'RESET';
+    boardSize.disabled = true;
+    difficulty.disabled = true;
+    setStatus('playing');
+    Timer.reset();
+    Timer.start();
+  } else  if (btnMain.textContent === 'RESET'){
+    btnMain.textContent ='START';
+    boardSize.disabled = false;
+    difficulty.disabled = false;
+    resetGame();
+  }
+}
+
+function resetGame() {
+  renderBoard(boardSize.value);
+  mineCountAsign(boardSize.value, difficulty.value);
+  Timer.reset();
+  setStatus('allSet');
+}
+
+
 
 
 
