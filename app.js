@@ -6,7 +6,6 @@ let mineCount = document.getElementById('mineCount');
 const CONFIG_KEY = 'minesweeper_config';
 
 
-
 const cellSizeMap ={
     8  : 38,
     12 : 32,
@@ -41,22 +40,57 @@ const minesTable = {
     32: 250
   }
 }
+let allSet = document.querySelector('.allSet');
+let playing = document.querySelector('.playing');
+let gameOver = document.querySelector('.gameOver');
+let youWon = document.querySelector('.youWon');
+const gameStatus = {
+    allSet:allSet,
+    playing:playing,
+    gameOver:gameOver,
+    youWon:youWon
+}
 
+init();
 
-boardSize.addEventListener('change', (e) => {
-    let boardSizeValue = e.target.value;
+function init() {
+  
+  const memoryCheck = loadConfig();
+
+  if (memoryCheck != null) {
+    const boardSizeCheck = memoryCheck.boardSize;
+    const difficultyCheck = memoryCheck.difficulty;
+
+    const isValidSize = boardSizeCheck in cellSizeMap;
+    const isValidDiff = difficultyCheck in minesTable;
+    
+    if (isValidSize && isValidDiff) {
+      boardSize.value = boardSizeCheck;
+      difficulty.value = difficultyCheck;
+    }
+  }
+  
+  boardSize.addEventListener('change', (e) => {
+    const boardSizeValue = e.target.value;
     renderBoard(boardSizeValue);
-    let difficultyValue = difficulty.value;
-    mineCountAsign(boardSizeValue, difficultyValue);
-    saveConfig();
-});
 
-difficulty.addEventListener('change', (e) => {
-    let difficultyValue = e.target.value;
-    let boardSizeValue = boardSize.value;
+    const difficultyValue = difficulty.value;
+    mineCountAsign(boardSizeValue, difficultyValue);
+
+    saveConfig();
+  });
+
+  difficulty.addEventListener('change', (e) => {
+    const difficultyValue = e.target.value;
+    const boardSizeValue = boardSize.value;
+
     mineCountAsign(boardSizeValue, difficultyValue);
     saveConfig();
-});
+  });
+  
+  renderBoard(boardSize.value);
+  mineCountAsign(boardSize.value, difficulty.value);
+}
 
 function renderBoard(boardSizeValue) {
     let sizeNum = Number(boardSizeValue);
@@ -109,6 +143,5 @@ function loadConfig() {
 }
 
 
-renderBoard(boardSize.value);
-mineCountAsign(boardSize.value, difficulty.value);
+
 
