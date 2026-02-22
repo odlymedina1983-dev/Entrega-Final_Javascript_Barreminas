@@ -1,10 +1,14 @@
 import { Timer } from './timer.js';
+import Game from './game.js';
+
+let game;
 
 let boardSize = document.getElementById('boardSize');
 let boardContainer = document.getElementById('boardContainer');
 let difficulty = document.getElementById('difficulty');
 let mineCount = document.getElementById('mineCount');
 let btnMain = document.getElementById('btnMain');
+
 let timerScreen = document.querySelector('.timerScreen');
 Timer.init(timerScreen);
 
@@ -48,6 +52,7 @@ const minesTable = {
     32: 250
   }
 }
+
 let allSet = document.querySelector('#allSet');
 let playing = document.querySelector('#playing');
 let gameOver = document.querySelector('#gameOver');
@@ -84,7 +89,6 @@ function init() {
 
     const difficultyValue = difficulty.value;
     mineCountAsign(boardSizeValue, difficultyValue);
-
     saveConfig();
   });
 
@@ -133,6 +137,11 @@ function mineCountAsign(size, difficulty){
     mineCount.textContent = `${minesCount}`;
 }
 
+function getMinesTotal(size, difficulty){
+    const minesCount = minesTable[difficulty][size];
+    return minesCount;
+}
+
 function saveConfig() {
   const config = {
     boardSize: boardSize.value,
@@ -166,6 +175,15 @@ function setStartReset(){
     btnMain.textContent = 'RESET';
     boardSize.disabled = true;
     difficulty.disabled = true;
+    let size = Number(boardSize.value);
+    let diff = difficulty.value;
+    let minesTotal = getMinesTotal(size, diff);
+    game = new Game(size, minesTotal);
+
+    console.log(game.model.length); 
+    game.minePositionRandom();
+    console.log(game.model.filter(cell => cell.mine === true).length);
+
     setStatus('playing');
     Timer.reset();
     Timer.start();
@@ -183,6 +201,8 @@ function resetGame() {
   Timer.reset();
   setStatus('allSet');
 }
+
+
 
 
 
