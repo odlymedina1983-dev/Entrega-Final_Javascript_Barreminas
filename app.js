@@ -179,10 +179,10 @@ function setStartReset(){
     let diff = difficulty.value;
     let minesTotal = getMinesTotal(size, diff);
     game = new Game(size, minesTotal);
-
-    console.log(game.model.length); 
-    game.minePositionRandom();
-    console.log(game.model.filter(cell => cell.mine === true).length);
+    renderBoardFromModel(game);
+    // console.log(game.model.length); 
+    // game.minePositionRandom();
+    // console.log(game.model.filter(cell => cell.mine === true).length);
 
     setStatus('playing');
     Timer.reset();
@@ -202,6 +202,18 @@ function resetGame() {
   setStatus('allSet');
 }
 
+function renderBoardFromModel(game) {
+  let dataBoard = document.querySelectorAll('.cell');
+   for (let cell of dataBoard){
+    let id = Number(cell.dataset.id);
+    let data = game.model[id];
+    if (data.mine){
+      cell.textContent = 'M';
+    }else if (data.number>0){
+      cell.textContent = data.number;
+    }
+   }
+}
 
 
 

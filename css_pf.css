@@ -202,11 +202,15 @@ body{
 
 }
 .cell{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(37, 37, 36);
   width: 28px;
   height: 28px;
   border: 1px solid rgb(138, 138, 137);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8)
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  color: rgb(235, 116, 4); 
 }
 .difficulty-container{
   display: flex;
