@@ -183,6 +183,7 @@ body{
   padding-block: 10px;
 }
 .boardSection{
+  position: relative;
   margin-top: 20px;
   border: 1px solid ;
   background-image: url(img/sectionBoard_background.png);
@@ -212,6 +213,18 @@ body{
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
   color: rgb(235, 116, 4); 
 }
+.cell.mine{
+  background-image: url(img/mine-icon.png);
+  background-size: contain;
+}
+.cell.flag{
+  background-image: url(img/flag-icon.png);
+  background-size: contain;
+}
+.cell.blank{
+  background-color: #ccc;
+  border: none;
+}
 .difficulty-container{
   display: flex;
   flex-direction: column;
@@ -237,3 +250,34 @@ body{
   border-radius: 6px;
   border: 1px solid rgb(235, 116, 4);
 }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay h1 {
+  font-size: 120px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.overlay .game-over {
+  color: #ff2b2b;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+}
+
+.overlay .you-won {
+  color: #00ff5e;
+  text-shadow: 0 0 20px rgba(0, 255, 94, 0.7);
+}
+#endMessage { color: white; }
