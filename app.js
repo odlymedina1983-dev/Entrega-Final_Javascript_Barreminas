@@ -10,6 +10,8 @@ const mineCount = document.getElementById('mineCount');
 const btnMain = document.getElementById('btnMain');
 const endOverlay = document.getElementById('endOverlay');
 const endMessage = document.getElementById('endMessage');
+const help = document.getElementById('help');
+const helpContainer = document.querySelector('.help-container');
 
 const timerScreen = document.querySelector('.timerScreen');
 Timer.init(timerScreen);
@@ -116,6 +118,10 @@ function init() {
     cellElement.classList.add('flag');
     game.minesLeft--;
     mineCount.textContent = String(game.minesLeft);
+  });
+
+  help.addEventListener('click', () => {
+    handleHelp();
   });
 
   renderBoard(boardSize.value);
@@ -357,6 +363,15 @@ function checkWin() {
 
   if (revealedCells === totalSafe) {
     handleWin();
+  }
+}
+function handleHelp(){
+  if (help.textContent === 'Help'){
+    help.textContent = 'Close Help';
+    helpContainer.classList.remove('notVisible');
+  } else if (help.textContent === 'Close Help'){
+    help.textContent = 'Help';
+    helpContainer.classList.add('notVisible');
   }
 }
 

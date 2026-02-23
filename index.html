@@ -9,7 +9,10 @@
 <body>
     <header class="menu">
         <div class="element-container">
-            <h2 class="logo">Mine<span>Sweeper</span></h2>
+            <div class="logoHelp">
+                <h2 class="logo">Mine<span>Sweeper</span></h2>
+                <button id="help">Help</button>
+            </div>            
             <div class="boardSize">
                 <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" class="icon">
                 <path fill="currentColor" d="M4 4h16v16H4V4zm2 2v4h4V6H6zm6 0v4h4V6h-4zm6 0v4h2V6h-2zM6 12v4h4v-4H6zm6 0v4h4v-4h-4zm6 0v4h2v-4h-2zM6 18v2h4v-2H6zm6 0v2h4v-2h-4zm6 0v2h2v-2h-2z"/>
@@ -69,8 +72,24 @@
                 
             </div>
             <div id="endOverlay" class="overlay hidden">
-            <h1 id="endMessage"></h1>
-        </div>
+                <h1 id="endMessage"></h1>
+            </div>
+            <div class="help-container notVisible">
+                <h2 class="rules">Rules</h2>
+                <p>💣 <strong>Goal:</strong> Reveal all safe cells without hitting a mine.</p>
+
+                <p>🔢 <strong>Numbers:</strong> Each number shows how many mines are hidden in the 8 surrounding cells.</p>
+
+                <p>🚩 <strong>Flags:</strong> Right-click a cell to place or remove a flag where you suspect a mine.</p>
+
+                <p>🧠 <strong>Logic:</strong> If a number already has the required number of flagged mines around it, the remaining hidden neighbors are safe.</p>
+
+                <p>⚠️ <strong>Danger:</strong> If you reveal a mine, the game ends immediately.</p>
+
+                <p>🏆 <strong>Win:</strong> You win when every non-mine cell has been revealed.</p>
+
+                <p>🎯 <strong>Tip:</strong> Use elimination and compare adjacent numbers to solve tricky situations.</p>
+            </div>
         </section>
         
     </main>        
